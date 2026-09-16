@@ -395,7 +395,27 @@ h3 {
   gap: 10px;
 }
 
+.content:not(.page-content) .offers-row { position: relative; display: flex; overflow-x: auto; overflow-y: hidden; scroll-behavior: smooth; scroll-snap-type: x proximity; padding-top: 48px; scrollbar-width: none; }
+.content:not(.page-content) .offers-row::-webkit-scrollbar { display: none; }
+.content:not(.page-content) .offers-row::before { content: 'Special offers for you'; position: absolute; z-index: 4; top: 0; left: 0; color: var(--ink); background: transparent; font-size: 1.1rem; font-weight: 800; pointer-events: none; }
+.content:not(.page-content) .offers-row::after { content: '‹   ›'; position: absolute; z-index: 5; top: 0; right: 0; display: grid; place-items: center; width: 58px; height: 30px; border-radius: 999px; color: var(--primary-dark); background: rgba(74,127,89,.1); font-size: 1rem; letter-spacing: .3em; font-weight: 800; cursor: pointer; }
+.content:not(.page-content) .offers-row .offer-card { flex: 0 0 min(280px, 82%); scroll-snap-align: none; transition: transform 260ms ease; }
+.content:not(.page-content) > .garden { display: none; }
+.content:not(.page-content) .offer-card small { font-size: 0; color: var(--primary-dark); font-weight: 800; }
+.content:not(.page-content) .offer-card small::after { content: 'Explore now'; font-size: .72rem; text-decoration: underline; }
+.content:not(.page-content) .offer-card::before { position: absolute; top: 10px; right: 10px; padding: 4px 7px; border-radius: 999px; color: var(--primary-dark); background: rgba(74,127,89,.1); font-size: .6rem; font-weight: 800; }
+.content:not(.page-content) .offer-card:nth-child(1)::before { content: 'Partner deal'; }
+.content:not(.page-content) .offer-card:nth-child(2)::before { content: 'Reward unlock'; }
+.content:not(.page-content) .offer-card:nth-child(3)::before { content: 'Brand drop'; }
+.content:not(.page-content) .offer-card p { height: 0; margin: 0; overflow: hidden; font-size: 0; }
+.content:not(.page-content) .offer-card p::before { content: ''; display: block; width: 100%; height: 70px; margin-bottom: 10px; border-radius: 12px; background: linear-gradient(135deg, #e2eee1, #f7e4d7); box-shadow: inset 0 0 0 1px rgba(74,127,89,.08); }
+.content:not(.page-content) .offer-card strong::after { display: block; margin-top: 6px; color: var(--muted); font-size: .68rem; font-weight: 500; }
+.content:not(.page-content) .offer-card:nth-child(1) strong::after { content: 'A curated trio from a verified partner brand.'; }
+.content:not(.page-content) .offer-card:nth-child(2) strong::after { content: 'A little extra value for your next routine.'; }
+.content:not(.page-content) .offer-card:nth-child(3) strong::after { content: 'Get early access to the latest conscious drop.'; }
+
 .offer-card {
+  position: relative;
   padding: 12px 10px;
   min-height: 110px;
   justify-content: space-between;
@@ -631,6 +651,17 @@ h3 {
   font-size: 1.04rem;
 }
 
+.content:not(.page-content) + .reward-strip { position: relative; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 18px; min-height: 150px; padding: 18px 20px 66px; overflow: hidden; background: linear-gradient(115deg, #edf5ed 0%, #fffdf8 58%, #f9e8dd 100%); }
+.content:not(.page-content) + .reward-strip::after { content: ''; position: absolute; left: 20px; right: 20px; bottom: 30px; display: block; width: auto; height: 8px; border-radius: 999px; background: linear-gradient(90deg, var(--primary) 0 85%, rgba(74,127,89,.12) 85% 100%); }
+.content:not(.page-content) + .reward-strip > div:first-child { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; min-width: 96px; }
+.content:not(.page-content) + .reward-strip > div:first-child p { color: var(--primary-dark); font-size: .7rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.content:not(.page-content) + .reward-strip > div:first-child strong { font-size: 1.8rem; line-height: 1; }
+.content:not(.page-content) + .reward-strip .goal-pill { grid-column: 3; grid-row: 1; align-self: start; padding: 7px 10px; color: var(--primary-dark); background: rgba(74,127,89,.1); font-size: 0; white-space: nowrap; }
+.content:not(.page-content) + .reward-strip .goal-pill::after { content: '220 pts to Meadow Keeper'; font-size: .68rem; }
+.content:not(.page-content) + .reward-strip::before { content: 'Seedling tier  ·  85% complete'; position: absolute; left: 142px; right: 92px; bottom: 48px; color: var(--muted); font-size: .72rem; font-weight: 800; }
+.content:not(.page-content) + .reward-strip { cursor: pointer; }
+.content:not(.page-content) + .reward-strip > div:first-child::after { content: 'View Rewards'; position: absolute; left: 20px; bottom: 13px; color: var(--primary-dark); font-size: .68rem; font-weight: 800; text-decoration: underline; }
+
 .goal-pill {
   background: rgba(74, 127, 89, 0.08);
   color: var(--primary-dark);
@@ -831,6 +862,12 @@ main:has(.profile-card) .page-heading { display: none; }
   .pricing-box strong { font-size: .84rem; }
   .earnings-card strong { font-size: 1.7rem; }
   .challenge-card .section-head { gap: 8px; }
+  .content:not(.page-content) + .reward-strip { grid-template-columns: minmax(0, 1fr) auto; gap: 10px; min-height: 142px; padding: 14px 14px 60px; }
+  .content:not(.page-content) + .reward-strip > div:first-child strong { font-size: 1.5rem; }
+  .content:not(.page-content) + .reward-strip > div:first-child::after { margin-top: 8px; font-size: .64rem; }
+  .content:not(.page-content) + .reward-strip::after { left: 14px; right: 14px; bottom: 27px; height: 7px; }
+  .content:not(.page-content) + .reward-strip::before { left: 14px; right: auto; bottom: 43px; font-size: .64rem; }
+  .content:not(.page-content) + .reward-strip > div:first-child::after { left: 14px; bottom: 10px; }
 }
 @media (max-width: 390px) {
   .offers-row { grid-template-columns: 1fr; }
@@ -866,6 +903,10 @@ main:has(.profile-card) .page-heading { display: none; }
     grid-column: 1 / -1;
   }
 
+  .topbar { grid-row: 1; }
+  .content:not(.page-content) { grid-row: 3; }
+  .content:not(.page-content) + .reward-strip { grid-row: 2; }
+
   .content {
     grid-column: 1 / -1;
     width: 100%;
@@ -898,6 +939,14 @@ main:has(.profile-card) .page-heading { display: none; }
     right: max(24px, calc((100vw - 1120px) / 2 + 24px));
     margin-top: 0;
   }
+}
+
+@media (max-width: 699px) {
+  .phone-frame { display: flex; flex-direction: column; }
+  .topbar { order: 1; }
+  .content:not(.page-content) { order: 3; }
+  .content:not(.page-content) + .reward-strip { order: 2; }
+  .bottom-nav { order: 4; }
 }
 
 @media (min-width: 1100px) {

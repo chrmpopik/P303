@@ -69,12 +69,12 @@ button {
 
 .phone-frame {
   width: min(100%, 430px);
+  min-height: calc(100vh + 42px);
   background: rgba(255, 255, 255, 0.42);
   border: 1px solid rgba(75, 94, 86, 0.08);
   border-radius: 34px;
   box-shadow: var(--shadow);
-  backdrop-filter: blur(12px);
-  padding: 18px 16px 20px;
+  padding: 18px 16px 82px;
   position: relative;
 }
 
@@ -628,8 +628,12 @@ h3 {
 }
 
 .bottom-nav {
-  position: sticky;
-  bottom: 0;
+  position: fixed;
+  z-index: 10;
+  left: 50%;
+  bottom: 16px;
+  width: min(398px, calc(100vw - 28px));
+  transform: translateX(-50%);
   margin-top: 18px;
   padding: 10px 8px 6px;
   border-radius: 20px 20px 26px 26px;
@@ -666,9 +670,10 @@ h3 {
 }
 
 .floating-assistant {
-  position: absolute;
-  right: 18px;
-  bottom: 90px;
+  position: fixed;
+  z-index: 11;
+  right: max(18px, calc((100vw - 430px) / 2 + 18px));
+  bottom: 105px;
   border: none;
   border-radius: 999px;
   padding: 10px 14px;
@@ -727,11 +732,12 @@ h3 {
 @media (min-width: 700px) {
   .phone-frame {
     width: min(100%, 940px);
+    min-height: calc(100vh + 42px);
     display: grid;
     grid-template-columns: 1.1fr 0.9fr;
     gap: 18px;
     align-items: start;
-    padding-bottom: 18px;
+    padding-bottom: 82px;
   }
 
   .topbar,
@@ -751,13 +757,12 @@ h3 {
   }
 
   .bottom-nav {
-    position: static;
+    position: fixed;
     margin-top: 0;
   }
 
   .floating-assistant {
-    position: static;
-    justify-self: end;
-    margin-top: 8px;
+    position: fixed;
+    margin-top: 0;
   }
 }

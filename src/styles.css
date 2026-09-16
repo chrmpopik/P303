@@ -32,12 +32,14 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  overflow-x: hidden;
   background:
     radial-gradient(circle at top, rgba(117, 164, 116, 0.18), transparent 30%),
     linear-gradient(180deg, #f3efe9 0%, #edf4ee 45%, #f8f4ef 100%);
@@ -57,6 +59,8 @@ button {
 
 #root {
   min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .app-shell {
@@ -810,15 +814,32 @@ main:has(.profile-card) .page-heading { display: none; }
 
 @media (max-width: 699px) {
   .app-shell { width: 100%; padding: 10px 8px 80px; overflow-x: hidden; }
-  .phone-frame { width: 100%; max-width: 430px; padding: 14px 12px 82px; border-radius: 28px; }
+  .phone-frame { width: calc(100% - 4px); max-width: 430px; padding: 14px 12px 82px; border-radius: 28px; }
   .topbar { padding: 6px 2px 14px; }
   .topbar h1 { font-size: 1.75rem; }
   .content { min-width: 0; }
-  .offers-row { gap: 7px; }
+  .page-heading { align-items: flex-start; }
+  .page-heading h2 { max-width: 100%; overflow-wrap: anywhere; }
+  .offers-row { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px; }
   .offer-card { padding: 10px 8px; }
   .offer-card strong { font-size: .78rem; }
-  .bottom-nav { width: calc(100vw - 20px); max-width: 398px; }
+  .bottom-nav { width: min(398px, calc(100% - 16px)); max-width: 398px; }
   .floating-assistant { right: 14px; max-width: calc(100vw - 28px); }
+  .product-sheet { width: 100%; max-height: 88vh; padding-inline: 14px; }
+  .pricing-box { gap: 7px; padding-inline: 8px; }
+  .pricing-box span { font-size: .56rem; }
+  .pricing-box strong { font-size: .84rem; }
+  .earnings-card strong { font-size: 1.7rem; }
+  .challenge-card .section-head { gap: 8px; }
+}
+@media (max-width: 390px) {
+  .offers-row { grid-template-columns: 1fr; }
+  .offer-card { min-height: auto; gap: 6px; }
+  .scan-tips { grid-template-columns: 1fr; }
+  .scan-tips div { flex-direction: row; justify-content: flex-start; text-align: left; }
+  .floating-assistant { padding: 9px 11px; font-size: .76rem; }
+  .nav-item { min-height: 54px; }
+  .nav-item small { font-size: .58rem; }
 }
 @keyframes scan { from { transform: translateY(-48px); } to { transform: translateY(48px); } }
 @keyframes rise { from { opacity: 0; transform: translate(-50%, 8px); } to { opacity: 1; transform: translate(-50%, 0); } }
@@ -830,12 +851,12 @@ main:has(.profile-card) .page-heading { display: none; }
 
 @media (min-width: 700px) {
   .phone-frame {
-    width: min(100%, 940px);
+    width: min(100%, 1120px);
     display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
+    grid-template-columns: minmax(0, 1.15fr) minmax(320px, .85fr);
     gap: 18px;
     align-items: start;
-    padding-bottom: 82px;
+    padding: 18px 22px 82px;
   }
 
   .topbar,
@@ -846,7 +867,19 @@ main:has(.profile-card) .page-heading { display: none; }
   }
 
   .content {
-    grid-column: 1;
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+
+  .page-content {
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+
+  .page-content .shop-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
   }
 
   .detail-panel {
@@ -856,11 +889,25 @@ main:has(.profile-card) .page-heading { display: none; }
 
   .bottom-nav {
     position: fixed;
+    width: min(620px, calc(100vw - 48px));
     margin-top: 0;
   }
 
   .floating-assistant {
     position: fixed;
+    right: max(24px, calc((100vw - 1120px) / 2 + 24px));
     margin-top: 0;
+  }
+}
+
+@media (min-width: 1100px) {
+  .app-shell { padding: 32px 24px 96px; }
+  .phone-frame { border-radius: 38px; }
+  .content { gap: 20px; }
+  .hero { padding: 24px 22px; }
+  .offers-row { gap: 14px; }
+
+  .page-content .shop-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
